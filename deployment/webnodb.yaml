@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webnodb-deployment
+  namespace: vmasseboeuf  # Ensure this matches your namespace
+  labels:
+    app: webnodb
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: webnodb
+  template:
+    metadata:
+      labels:
+        app: webnodb
+    spec:
+      containers:
+        - name: webnodb
+          image: leduc34/kubernetes:flask_no_db  # Replace with your application's image
+          ports:
+            - containerPort: 5000
+          resources:
+            requests:
+              memory: "100Mi"
+              cpu: "100m"
+            limits:
+              memory: "200Mi"
+              cpu: "200m"
+         

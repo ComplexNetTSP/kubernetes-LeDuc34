@@ -1,0 +1,30 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: web-ingress
+  namespace: vmasseboeuf  # Replace with your namespace
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+    - host: webnodb.vmasseboeuf.net4255.luxbulb.org
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: webnodb-service  # Service for webnodb
+                port:
+                  number: 80
+    - host: webdb.vmasseboeuf.net4255.luxbulb.org
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: webdb-service  # Service for webdb
+                port:
+                  number: 80

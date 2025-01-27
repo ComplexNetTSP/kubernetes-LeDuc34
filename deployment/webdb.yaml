@@ -27,15 +27,4 @@ spec:
             limits:
               memory: "200Mi"
               cpu: "200m"
-          args:
-            - /bin/sh
-            - -c
-            - touch /tmp/healthy; sleep 60; rm -f /tmp/healthy; sleep 600
-          livenessProbe:
-            exec:
-              command:
-              - cat
-              - /tmp/healthy
-            initialDelaySeconds: 5
-            periodSeconds: 5
-          
+       
