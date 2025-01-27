@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webdb-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: webdb
+  template:
+    metadata:
+      labels:
+        app: webdb
+    spec:
+      containers:
+        - name: webdb
+          image: leduc34/kubernetes:flask_with_db
+
+          env:
+            - name: MONGO_URI
+              value: "mongodb://mongodb-service:27017"
+          ports:
+            - containerPort: 5000
+          resources:
+            requests:
+              memory: "100Mi"
+              cpu: "100m"
+            limits:
+              memory: "200Mi"
+              cpu: "200m"
