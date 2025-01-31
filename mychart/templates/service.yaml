@@ -1,4 +1,5 @@
-# MongoDB Service
+---
+# MongoDB Headless Service
 apiVersion: v1
 kind: Service
 metadata:
@@ -6,12 +7,12 @@ metadata:
   labels:
     app: mongodb
 spec:
+  clusterIP: None 
+  selector:
+    app: mongodb
   ports:
     - port: 27017
       targetPort: 27017
-  selector:
-    app: mongodb
-  type: ClusterIP
 ---
 # webdb Service
 apiVersion: v1
@@ -21,12 +22,12 @@ metadata:
   labels:
     app: webdb
 spec:
+  type: ClusterIP 
+  selector:
+    app: webdb
   ports:
     - port: 80
       targetPort: {{ .Values.webdb.containerPort }}
-  selector:
-    app: webdb
-  type: ClusterIP
 ---
 # webnodb Service
 apiVersion: v1
@@ -36,9 +37,9 @@ metadata:
   labels:
     app: webnodb
 spec:
+  type: ClusterIP 
+  selector:
+    app: webnodb
   ports:
     - port: 80
       targetPort: {{ .Values.webnodb.containerPort }}
-  selector:
-    app: webnodb
-  type: ClusterIP

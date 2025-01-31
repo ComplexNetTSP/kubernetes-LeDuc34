@@ -57,7 +57,7 @@ def home():
         html_content,
         developer_name="Victor",
         project_name="Kubernetes",
-        version="VX",
+        version="V1.1",
         server_hostname=hostname,
         current_date=current_date,
         last_10_records=records_display

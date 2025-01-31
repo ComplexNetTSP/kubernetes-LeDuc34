@@ -9,6 +9,12 @@ mongodb:
     repository: mongo
     tag: latest
     pullPolicy: IfNotPresent
+  persistence:
+    enabled: true
+    storageClass: "standard"
+    accessModes:
+      - ReadWriteOnce
+    size: 0.5Gi  
   resources:
     requests:
       memory: "100Mi"

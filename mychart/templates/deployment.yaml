@@ -50,7 +50,7 @@ spec:
           image: "{{ .Values.webdb.image.repository }}:{{ .Values.webdb.image.tag }}"
           env:
             - name: MONGO_URI
-              value: "{{ .Values.webdb.mongoUri }}"
+              value: "mongodb://{{ .Release.Name }}-mongodb-0.{{ .Release.Name }}-mongodb-service:27017"
           ports:
             - containerPort: {{ .Values.webdb.containerPort }}
           resources:
