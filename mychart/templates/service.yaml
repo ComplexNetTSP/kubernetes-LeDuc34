@@ -1,0 +1,44 @@
+# MongoDB Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-mongodb-service
+  labels:
+    app: mongodb
+spec:
+  ports:
+    - port: 27017
+      targetPort: 27017
+  selector:
+    app: mongodb
+  type: ClusterIP
+---
+# webdb Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-webdb-service
+  labels:
+    app: webdb
+spec:
+  ports:
+    - port: 80
+      targetPort: {{ .Values.webdb.containerPort }}
+  selector:
+    app: webdb
+  type: ClusterIP
+---
+# webnodb Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-webnodb-service
+  labels:
+    app: webnodb
+spec:
+  ports:
+    - port: 80
+      targetPort: {{ .Values.webnodb.containerPort }}
+  selector:
+    app: webnodb
+  type: ClusterIP

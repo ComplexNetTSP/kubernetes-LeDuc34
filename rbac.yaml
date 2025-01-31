@@ -1,0 +1,24 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: view-endpointslices
+  namespace: vmasseboeuf
+rules:
+  - apiGroups: ["discovery.k8s.io"]
+    resources: ["endpointslices"]
+    verbs: ["get", "list", "watch"]
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: bind-view-endpointslices
+  namespace: vmasseboeuf
+subjects:
+  - kind: User
+    name: vmasseboeuf
+    apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: Role
+  name: view-endpointslices
+  apiGroup: rbac.authorization.k8s.io
